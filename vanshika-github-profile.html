@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vanshika Vashisth — GitHub Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --card: #161616;
+      --border: #2a2a2a;
+      --green: #39ff14;
+      --green-dim: #1e8c0a;
+      --text: #e8e8e8;
+      --muted: #777;
+      --accent: #ff6b35;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Space Mono', monospace;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(57,255,20,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(57,255,20,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* HEADER */
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      margin-bottom: 48px;
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .avatar-wrap { position: relative; flex-shrink: 0; }
+
+    .avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green-dim), var(--green));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-size: 38px;
+      font-weight: 800;
+      color: #0d0d0d;
+      border: 3px solid var(--green);
+      box-shadow: 0 0 28px rgba(57,255,20,0.35);
+    }
+
+    .status-dot {
+      position: absolute;
+      bottom: 6px; right: 6px;
+      width: 16px; height: 16px;
+      background: var(--green);
+      border-radius: 50%;
+      border: 3px solid var(--bg);
+      animation: pulse 2s infinite;
+    }
+
+    .header-info h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.5px;
+    }
+
+    .username {
+      color: var(--green);
+      font-size: 0.85rem;
+      margin: 4px 0 10px;
+      letter-spacing: 1px;
+    }
+
+    .role-badge {
+      display: inline-block;
+      background: rgba(57,255,20,0.08);
+      border: 1px solid var(--green-dim);
+      color: var(--green);
+      font-size: 0.72rem;
+      padding: 3px 12px;
+      border-radius: 2px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* BIO */
+    .bio-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--green);
+      padding: 20px 24px;
+      margin-bottom: 32px;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+
+    .bio-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    .bio-card span { color: var(--accent); font-weight: 700; }
+
+    /* SECTION TITLE */
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* STATS */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 32px;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+
+    .stat-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 20px;
+      text-align: center;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      cursor: default;
+    }
+
+    .stat-box:hover {
+      border-color: var(--green);
+      box-shadow: 0 0 14px rgba(57,255,20,0.12);
+    }
+
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: var(--green);
+    }
+
+    .stat-label {
+      font-size: 0.68rem;
+      color: var(--muted);
+      margin-top: 5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    /* SKILLS */
+    .skills-section {
+      margin-bottom: 32px;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill-tag {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+      padding: 6px 14px;
+      border-radius: 2px;
+      letter-spacing: 0.5px;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      cursor: default;
+    }
+
+    .skill-tag:hover {
+      border-color: var(--green);
+      color: var(--green);
+      background: rgba(57,255,20,0.04);
+    }
+
+    /* CONTRIBUTION GRAPH */
+    .activity-section {
+      margin-bottom: 40px;
+      animation: fadeUp 0.7s 0.4s ease both;
+    }
+
+    .contrib-grid {
+      display: grid;
+      grid-template-columns: repeat(26, 1fr);
+      gap: 3px;
+    }
+
+    .contrib-cell {
+      aspect-ratio: 1;
+      border-radius: 2px;
+      background: var(--border);
+      transition: transform 0.15s;
+    }
+
+    .contrib-cell:hover { transform: scale(1.5); }
+    .contrib-cell.l1 { background: #1a4d0e; }
+    .contrib-cell.l2 { background: #2d7a18; }
+    .contrib-cell.l3 { background: rgba(57,255,20,0.55); }
+    .contrib-cell.l4 { background: var(--green); }
+
+    /* FOOTER */
+    .footer {
+      margin-top: 48px;
+      text-align: center;
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 1px;
+      animation: fadeUp 0.7s 0.5s ease both;
+    }
+
+    .footer a {
+      color: var(--green);
+      text-decoration: none;
+    }
+
+    .footer a:hover { text-decoration: underline; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(57,255,20,0.5); }
+      50%       { box-shadow: 0 0 0 7px rgba(57,255,20,0); }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; } 50% { opacity: 0; }
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 2px; height: 1em;
+      background: var(--green);
+      margin-left: 3px;
+      vertical-align: middle;
+      animation: blink 1s infinite;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="avatar-wrap">
+      <div class="avatar">VV</div>
+      <div class="status-dot"></div>
+    </div>
+    <div class="header-info">
+      <h1>Vanshika Vashisth<span class="cursor"></span></h1>
+      <div class="username">@vanshika-vashisth</div>
+      <span class="role-badge">Software Developer</span>
+    </div>
+  </div>
+
+  <!-- BIO -->
+  <div class="bio-card">
+    <p>
+      Hey! I'm <span>Vanshika</span> — an 18-year-old software developer with big dreams
+      and a height that matches 8th graders. 😄
+      I build things, break things, and occasionally fix them too.
+      Fluent in <span>Dehati</span>, <span>Hindi</span> &amp; <span>English</span> —
+      debugging in all three. Turning ☕ into code, one commit at a time.
+    </p>
+  </div>
+
+  <!-- STATS -->
+  <div class="section-title">Stats</div>
+  <div class="stats-row">
+    <div class="stat-box">
+      <div class="stat-num">18</div>
+      <div class="stat-label">Years Old</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">5ft</div>
+      <div class="stat-label">Height 😅</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">Potential</div>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="skills-section">
+    <div class="section-title">Languages & Skills</div>
+    <div class="skills-grid">
+      <span class="skill-tag">🗣️ Dehati</span>
+      <span class="skill-tag">🇮🇳 Hindi</span>
+      <span class="skill-tag">🌐 English</span>
+      <span class="skill-tag">💻 Software Dev</span>
+      <span class="skill-tag">🐛 Debugging</span>
+      <span class="skill-tag">☕ Coffee Driven</span>
+      <span class="skill-tag">🚀 Fast Learner</span>
+    </div>
+  </div>
+
+  <!-- CONTRIBUTION GRAPH -->
+  <div class="activity-section">
+    <div class="section-title">Contribution Activity</div>
+    <div class="contrib-grid" id="contrib"></div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>Vanshika Vashisth &nbsp;•&nbsp; Software Developer &nbsp;•&nbsp;
+      <a href="https://www.linkedin.com/in/vanshika-vashisth-a74b6a384" target="_blank">LinkedIn ↗</a>
+    </p>
+    <p style="margin-top: 10px;">Built with 💚 and a lot of chai &nbsp;|&nbsp; India 🇮🇳</p>
+  </div>
+
+</div>
+
+<script>
+  const grid = document.getElementById('contrib');
+  const levels = ['', 'l1', 'l2', 'l3', 'l4'];
+  const weights = [0.38, 0.26, 0.18, 0.11, 0.07];
+
+  for (let i = 0; i < 26 * 7; i++) {
+    const cell = document.createElement('div');
+    cell.className = 'contrib-cell';
+    const r = Math.random();
+    let acc = 0;
+    for (let j = 0; j < weights.length; j++) {
+      acc += weights[j];
+      if (r < acc) {
+        if (levels[j]) cell.classList.add(levels[j]);
+        break;
+      }
+    }
+    grid.appendChild(cell);
+  }
+</script>
+</body>
+</html>
